@@ -56,14 +56,14 @@ h2. Defaults
 
 <pre>
 speed: 300, // sets animation speed.
-crossfade: false, // crass fades content.
+crossfade: false, // crossfades content.
 bigtarget: false, // click content for next.
 sequentialloading: false, // for images only, will load images in sequence.
 autoheight: false, // auto adjust height.
 pagination: "pagination", // sets true and class name for pagination. set to false to disable this feature.
-nextbtn: "next", // next button class
-prevbtn: "prev", // previous button class
-loadingimg: false // locaiton of loading image (e.g. "/img/loading.gif") if using sequentialloading
+nextbtn: "next", // next button class.
+prevbtn: "prev", // previous button class.
+loadingimg: false // locaiton of loading image (e.g."/img/loading.gif") if using sequentialloading.
 </pre>
 
 h2. Defining Local Defaults
