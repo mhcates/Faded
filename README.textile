@@ -1,0 +1,96 @@
+h1. Faded 0.1 - jQuery plugin
+
+Faded is a supper simple fading image and content viewer for jQuery. Easy to setup and design to your specifications. Features auto generated pagination, an awesome sequential image loader, some fancy crossfading, essentially no CSS required and a number of custom option for you to set if you like. Get faded!
+
+h2. Info
+
+Developed by "Nathan Searles":mailto:nsearles@gmail.com, "http://nathansearles.com":http://nathansearles.com
+
+For updates, follow Nathan Searles on "Twitter":http://twitter.com/nathansearles
+
+h2. Examples
+
+* "Simple example usage":http://nathansearles.com/faded/example.html
+
+h2. Markup for content
+
+<pre>
+<div id="faded">
+	<ul>
+		<li>Slide 1 Copy</li>
+		<li>Slide 2 Copy</li>
+		<li>Slide 3 Copy</li>
+		<li>Slide 4 Copy</li>
+	</ul>
+	<a href="#" class="prev">prev</a>
+	<a href="#" class="next">next</a>
+</div>
+</pre>
+
+h2. Markup for images
+
+<pre>
+<div id="faded">
+	<div>
+		<img src="01.jpg" alt="" />
+		<img src="02.jpg" alt="" />
+		<img src="03.jpg" alt="" />
+		<img src="04.jpg" alt="" />
+	</div>
+	<a href="#" class="prev">prev</a>
+	<a href="#" class="next">next</a>
+</div>
+</pre>
+
+h2. Initialize
+
+<pre>
+<script type="text/javascript" charset="utf-8">
+        $(function(){
+                $("#faded").faded();
+        });
+</script>
+</pre>
+
+h2. Defaults
+
+<pre>
+speed: 300, // sets animation speed.
+crossfade: false, // crass fades content.
+bigtarget: false, // click content for next.
+sequentialloading: false, // for images only, will load images in sequence.
+autoheight: false, // auto adjust height.
+pagination: "pagination", // sets true and class name for pagination. set to false to disable this feature.
+nextbtn: "next", // next button class
+prevbtn: "prev", // previous button class
+loadingimg: false // locaiton of loading image (e.g. "/img/loading.gif") if using sequentialloading
+</pre>
+
+h2. Defining Local Defaults
+
+<pre>
+<script type="text/javascript" charset="utf-8">
+        $(function(){
+			$('#faded').faded({
+				speed: 500,
+				crossfade: true,
+				sequentialloading: true
+			});
+        });
+</script>
+</pre>
+
+h2. Defining Global Defaults
+
+<pre>
+<script type="text/javascript" charset="utf-8">
+        $(function(){
+			$.fn.faded.defaults.speed = 500;
+			$.fn.faded.defaults.crossfade = true;
+			$.fn.faded.defaults.sequentialloading = true;
+        });
+</script>
+</pre>
+
+h2. Changelog
+* 0.1 - Initial release
