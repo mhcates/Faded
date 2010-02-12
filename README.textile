@@ -1,6 +1,6 @@
 h1. Faded 0.1 - jQuery plugin
 
-Faded is a supper simple fading image and content viewer for jQuery. Easy to setup and design to your specifications. Features auto generated pagination, an awesome sequential image loader, some fancy crossfading, essentially no CSS required and a number of custom option for you to set if you like. Get faded!
+Faded is a super simple fading image and content viewer for jQuery. Easy to setup and design to your specifications. Features auto generated pagination, an awesome sequential image loader, some fancy crossfading, essentially no CSS required and a number of custom option for you to set if you like. Get faded!
 
 h2. Info
 
