@@ -1,5 +1,5 @@
 /*
- * 	faded 0.1 - jQuery plugin
+ * 	faded 0.2 - jQuery plugin
  *	written by Nathan Searles	
  *	http://nathansearles.com/faded/
  *
@@ -28,8 +28,36 @@ if(typeof jQuery != "undefined") {
 						var prev = 0;
 						var number = 0;
 						var currentitem = 0;
-						var loaded,active,imgSrc,clicked,current;						
-						$c.css({position:"relative"});					
+						var restart = 0;
+						var restartinterval = 0;
+						var loaded,active,imgSrc,clicked,current;
+						if (o.random) {
+							$.fn.reorder = function(callback) {
+								function randOrd() { return(Math.round(Math.random())-0.5); }
+									return($(this).each(function() {
+									var $this = $(this);
+									var $children = $this.children();
+									var childCount = $children.length;
+									if (childCount > 1) {
+										$children.hide();
+										var indices = new Array();
+										for (i=0;i<childCount;i++) { indices[indices.length] = i; }
+										indices = indices.sort(randOrd);
+										$.each(indices,function(j,k) { 
+											var $child = $children.eq(k);
+											var $clone = $child.clone(true);
+											$clone.show().appendTo($this);
+											if (callback != undefined) {
+											callback($child, $clone);
+										}
+										$child.remove();
+									});
+									}
+								}));
+							}
+							$c.reorder();
+						}					
+						$c.css({position:"relative"});			
 						$c.children().css({
 							position:"absolute",
 							top: 0, 
@@ -41,7 +69,7 @@ if(typeof jQuery != "undefined") {
 							$c.animate({height: $c.children(":eq(0)").outerHeight()},o.autoheight);
 						}
 						if (o.pagination) {
-							$t.append("<ul class="+o.pagination+"");
+							$t.append("<ul class="+o.pagination+"></ul>");
 							$c.children().each(function(){
 								$("."+o.pagination+"",$t).append("<li><a rel="+number+" href=\"#\" >"+(number+1)+"</a></li>");
 								number = number+1;
@@ -51,6 +79,7 @@ if(typeof jQuery != "undefined") {
 								current = $("."+o.pagination+" li.current a",$t).attr("rel");									
 								clicked = $(this).attr("rel");
 								if (current != clicked) {animate("pagination",clicked,current);}
+								if(o.autoplay){pause();}
 								return false;
 							});
 						}
@@ -74,13 +103,41 @@ if(typeof jQuery != "undefined") {
 								animate("next");
 								return false;
 							});									
+						}			
+						if (o.autoplay) {
+							autoplay = setInterval(function(){
+								animate("next");
+							},o.autoplay);
+							function pause() {
+								clearInterval(autoplay);
+								clearTimeout(restart);
+								restart = setTimeout(function() {
+									autoplay = setInterval(function(){
+										animate("next");
+									},o.autoplay);
+								},o.autorestart);			
+							};
 						}
 						$("."+o.nextbtn,$t).click(function(){
 							animate("next");
+							if(o.autoplay){
+								if (o.autorestart) {
+									pause();
+								} else {
+									clearInterval(autoplay);	
+								}
+							}
 							return false;
 						});					
 						$("."+o.prevbtn,$t).click(function(){
 							animate("prev");
+							if(o.autoplay){
+								if (o.autorestart) {
+									pause();
+								} else {
+									clearInterval(autoplay);	
+								}
+							}
 							return false;
 						});
 						function animate(dir,clicked,current){
@@ -127,7 +184,7 @@ if(typeof jQuery != "undefined") {
 									});
 								}
 							}
-						}	
+						}
 					}
 				);
 				}
@@ -141,7 +198,10 @@ if(typeof jQuery != "undefined") {
 			pagination: "pagination",
 			nextbtn: "next",
 			prevbtn: "prev",
-			loadingimg: false
+			loadingimg: false,
+			autoplay: false,
+			autorestart: false,
+			random: false
 		};
 	});
 }
