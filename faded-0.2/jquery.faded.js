@@ -1,5 +1,5 @@
 /*
- * 	faded 0.2 - jQuery plugin
+ *	faded 0.2 - jQuery plugin
  *	written by Nathan Searles	
  *	http://nathansearles.com/faded/
  *
@@ -24,12 +24,7 @@ if(typeof jQuery != "undefined") {
 						var $c = $t.children(":nth-child(1)");
 						var o = $.metadata ? $.extend({}, settings, $t.metadata()) : settings;
 						var total = $c.children().size();
-				        var next = 0;
-						var prev = 0;
-						var number = 0;
-						var currentitem = 0;
-						var restart = 0;
-						var restartinterval = 0;
+						var next = 0, prev = 0, number = 0, currentitem = 0, restart = 0, restartinterval = 0;
 						var loaded,active,imgSrc,clicked,current;
 						if (o.random) {
 							$.fn.reorder = function(callback) {
@@ -47,16 +42,25 @@ if(typeof jQuery != "undefined") {
 											var $child = $children.eq(k);
 											var $clone = $child.clone(true);
 											$clone.show().appendTo($this);
-											if (callback != undefined) {
-											callback($child, $clone);
-										}
+											if (callback !== undefined) {
+												callback($child, $clone);
+											}
 										$child.remove();
 									});
 									}
 								}));
-							}
+							};
 							$c.reorder();
-						}					
+						}
+						function pause() {
+							clearInterval(autoplay);
+							clearTimeout(restart);
+							restart = setTimeout(function() {
+								autoplay = setInterval(function(){
+									animate("next");
+								},o.autoplay);
+							},o.autorestart);			
+						}				
 						$c.css({position:"relative"});			
 						$c.children().css({
 							position:"absolute",
@@ -72,7 +76,7 @@ if(typeof jQuery != "undefined") {
 							$t.append("<ul class="+o.pagination+"></ul>");
 							$c.children().each(function(){
 								$("."+o.pagination+"",$t).append("<li><a rel="+number+" href=\"#\" >"+(number+1)+"</a></li>");
-								number = number+1;
+								number++;
 							});
 							$("."+o.pagination+" li a:eq(0)",$t).parent().addClass("current");
 							$("."+o.pagination+" li a",$t).click(function(){
@@ -108,15 +112,7 @@ if(typeof jQuery != "undefined") {
 							autoplay = setInterval(function(){
 								animate("next");
 							},o.autoplay);
-							function pause() {
-								clearInterval(autoplay);
-								clearTimeout(restart);
-								restart = setTimeout(function() {
-									autoplay = setInterval(function(){
-										animate("next");
-									},o.autoplay);
-								},o.autorestart);			
-							};
+							pause();
 						}
 						$("."+o.nextbtn,$t).click(function(){
 							animate("next");
@@ -147,12 +143,12 @@ if(typeof jQuery != "undefined") {
 									case "next":
 										prev = next;
 										next = currentitem*1+1;
-										if (total === next) next = 0;
+										if (total === next) { next = 0; }
 									break;
 									case "prev":
 										prev = next;
 										next = currentitem*1-1;
-										if (next === -1) next = total-1;
+										if (next === -1) { next = total-1; }
 									break;
 									case "pagination":
 										next = clicked;
