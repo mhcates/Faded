@@ -1,5 +1,5 @@
 /*
- *	faded 0.2 - jQuery plugin
+ *	faded 0.3 - jQuery plugin
  *	written by Nathan Searles	
  *	http://nathansearles.com/faded/
  *
@@ -73,11 +73,13 @@ if(typeof jQuery != "undefined") {
 							$c.animate({height: $c.children(":eq(0)").outerHeight()},o.autoheight);
 						}
 						if (o.pagination) {
-							$t.append("<ul class="+o.pagination+"></ul>");
-							$c.children().each(function(){
-								$("."+o.pagination+"",$t).append("<li><a rel="+number+" href=\"#\" >"+(number+1)+"</a></li>");
-								number++;
-							});
+							if (o.autopagination) {
+								$t.append("<ul class="+o.pagination+"></ul>");
+								$c.children().each(function(){
+									$("."+o.pagination+"",$t).append("<li><a rel="+number+" href=\"#\" >"+(number+1)+"</a></li>");
+									number++;
+								});
+							}
 							$("."+o.pagination+" li a:eq(0)",$t).parent().addClass("current");
 							$("."+o.pagination+" li a",$t).click(function(){
 								current = $("."+o.pagination+" li.current a",$t).attr("rel");									
@@ -91,7 +93,7 @@ if(typeof jQuery != "undefined") {
 							$c.css({background:"url("+o.loadingimg+") no-repeat 50% 50%"});
 							imgSrc = $("img:eq(0)",$c).attr("src");
 							$("img:eq(0)",$c).attr("src", imgSrc).load(function() { 
-								$c.css({background:"none"});
+								$c.css({background:""});
 								$(this).fadeIn(o.speed,function(){
 									loaded = true;
 								});
@@ -192,6 +194,7 @@ if(typeof jQuery != "undefined") {
 			sequentialloading: false,
 			autoheight: false,
 			pagination: "pagination",
+			autopagination: true,
 			nextbtn: "next",
 			prevbtn: "prev",
 			loadingimg: false,

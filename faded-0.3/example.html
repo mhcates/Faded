@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Faded</title>
-    <script src="jquery-1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="jquery.faded.js" type="text/javascript" charset="utf-8"></script>
 	
 <style type="text/css" media="screen">
@@ -33,6 +33,12 @@
 			</div>
 			<a href="#" class="prev">prev</a>
 			<a href="#" class="next">next</a>
+			<ul class="pagination">
+				<li><a href="#" rel="0">1</a></li>
+				<li><a href="#" rel="1">2</a></li>
+				<li><a href="#" rel="2">3</a></li>
+				<li><a href="#" rel="3">4</a></li>
+			</ul>
 		</div>
 		<div id="faded2">
 			<ul>
@@ -56,7 +62,8 @@
 			loadingimg: "loading.gif",
 			autoplay: 5000,
 			autorestart: 8000,
-			random: true
+			random: true,
+			autopagination:false
 		});
 		$("#faded2").faded({
 			autoheight: 250
