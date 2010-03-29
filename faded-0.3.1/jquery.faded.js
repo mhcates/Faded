@@ -1,5 +1,5 @@
 /*
- *	faded 0.3 - jQuery plugin
+ *	faded 0.3.1 - jQuery plugin
  *	written by Nathan Searles	
  *	http://nathansearles.com/faded/
  *
@@ -92,8 +92,7 @@ if(typeof jQuery != "undefined") {
 						if (o.sequentialloading&&$c.children()[0].tagName=="IMG") {
 							$c.css({background:"url("+o.loadingimg+") no-repeat 50% 50%"});
 							imgSrc = $("img:eq(0)",$c).attr("src");
-							$("img:eq(0)",$c).attr("src", imgSrc).load(function() { 
-								$c.css({background:""});
+							$("img:eq(0)",$c).attr("src", imgSrc).load(function() {
 								$(this).fadeIn(o.speed,function(){
 									loaded = true;
 								});
@@ -107,6 +106,13 @@ if(typeof jQuery != "undefined") {
 							$c.css({"cursor":"pointer"});
 							$c.click(function(){
 								animate("next");
+								if(o.autoplay){
+									if (o.autorestart) {
+										pause();
+									} else {
+										clearInterval(autoplay);	
+									}
+								}
 								return false;
 							});									
 						}			

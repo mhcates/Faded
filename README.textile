@@ -1,4 +1,4 @@
-h1. Faded 0.3 - jQuery plugin
+h1. Faded 0.3.1 - jQuery plugin
 
 Faded is a super simple fading image and content viewer for jQuery. Easy to setup and design to your specifications. Features auto generated pagination, an awesome sequential image loader, some fancy crossfading, essentially no CSS required and a number of custom option for you to set if you like. Get faded!
 
@@ -97,6 +97,7 @@ h2. Defining Global Defaults
 </pre>
 
 h2. Changelog
+* 0.3.1 - Fixed bug with next click not clearing interval, caused sporadic next animations when using autoplay, autorestart and bigtarget
 * 0.3 - Minor bug fix. Added feature: Auto generate pagination or use your own with autopagination: true/false
 * 0.2 - Bug fixed with pagination. Added features: randomization and autoplay with auto restart
 * 0.1 - Initial release
