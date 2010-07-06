@@ -1,4 +1,4 @@
-h1. Faded 0.3.1 - jQuery plugin
+h1. Faded 0.3.2 - jQuery plugin
 
 Faded is a super simple fading image and content viewer for jQuery. Easy to setup and design to your specifications. Features auto generated pagination, an awesome sequential image loader, some fancy crossfading, essentially no CSS required and a number of custom option for you to set if you like. Get faded!
 
@@ -58,13 +58,13 @@ h2. Defaults
 speed: 300, // sets animation speed.
 crossfade: false, // crossfades content.
 bigtarget: false, // click content for next.
-sequentialloading: false, // for images only, will load images in sequence.
+loading: false, // for images only, checks if first image is loaded before showing it.
 autoheight: false, // auto adjust height.
 pagination: "pagination", // sets true and class name for pagination. set to false to disable this feature.
 autopagination: true, // set to true to auto generate pagination.
 nextbtn: "next", // next button class.
 prevbtn: "prev", // previous button class.
-loadingimg: false, // location of loading image (e.g."/img/loading.gif") if using sequentialloading.
+loadingimg: false, // location of loading image (e.g."/img/loading.gif") if using loading.
 autoplay: false, // auto play of content. set to positive number for true. also sets time interval. use 1000 for 1 second.
 autorestart: false, // auto restart if auto play stopped. set to positive number for true. also sets time interval. use 1000 for 1 second.
 random: false // set to true to randomize order
@@ -78,7 +78,7 @@ h2. Defining Local Defaults
 			$('#faded').faded({
 				speed: 500,
 				crossfade: true,
-				sequentialloading: true
+				loading: true
 			});
         });
 </script>
@@ -91,12 +91,13 @@ h2. Defining Global Defaults
         $(function(){
 			$.fn.faded.defaults.speed = 500;
 			$.fn.faded.defaults.crossfade = true;
-			$.fn.faded.defaults.sequentialloading = true;
+			$.fn.faded.defaults.loading = true;
         });
 </script>
 </pre>
 
 h2. Changelog
+* 0.3.2 - Fixed bug with image loading in IE. Change option name sequentialloading to loading.
 * 0.3.1 - Fixed bug with next click not clearing interval, caused sporadic next animations when using autoplay, autorestart and bigtarget
 * 0.3 - Minor bug fix. Added feature: Auto generate pagination or use your own with autopagination: true/false
 * 0.2 - Bug fixed with pagination. Added features: randomization and autoplay with auto restart
